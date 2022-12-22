@@ -6,7 +6,7 @@ class App
   def call(env)
     @request = Rack::Request.new(env)
     response
-    [status, headers, body]
+    [status, {}, body]
   end
 
   private
@@ -26,10 +26,6 @@ class App
     @status_code
   end
 
-  def headers
-    { 'Content-Type' => 'text/plain' }
-  end
-
   def body
     ["#{@message}"]
   end
@@ -44,8 +40,4 @@ class App
     @message = "Unknown time format #{@incorrect}"
   end
 
-  def wrong_url
-    @status_code = 404
-    @message = "Not Found"
-  end
 end

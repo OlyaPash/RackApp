@@ -1,3 +1,5 @@
+require_relative 'routes'
 require_relative 'app'
 
-run App.new
+use Rack::ContentType, 'text/plain'
+run Rack::URLMap.new(ROUTES)
